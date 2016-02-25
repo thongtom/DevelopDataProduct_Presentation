@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Develop Data Product - AQI</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Develop Data Product - AQI">
+  <meta name="author" content="Thong">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Develop Data Product - AQI</h1>
+    <h2>Air Quality Index for LDG. ULU REMIS area from date 1 Aug 2013 to 5 Feb 2015</h2>
+    <p>Thong<br/>Engineer</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This Reproducible Pitch Presentation is the second part of the Course Project for the <strong>Developing Data Products</strong> module and it must satisfy the following:</p>
+
+<ol>
+<li>It must be done in Slidify or Rstudio Presenter</li>
+<li>It must be 5 pages</li>
+<li>It must be hosted on Github or Rpubs</li>
+<li>It must contained some embedded R code that gets run when slidifying the document</li>
+</ol>
+
+<p>The source code for this Slidify slide is available at:</p>
+
+<p><a href="https://github.com/thongtom/DevelopDataProduct_Presentation">https://github.com/thongtom/DevelopDataProduct_Presentation</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The Shiny Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The Shiny application for the Course Project is avalilable at:</p>
+
+<p><a href="https://thongtom.shinyapps.io/DevelopDataProduct-AQI">https://thongtom.shinyapps.io/DevelopDataProduct-AQI</a></p>
+
+<p>This Shiny application is to analyst the Air Quality Index (AQI) for LDG. ULU REMIS area from date 1 Aug 2013 to 5 Feb 2015.</p>
+
+<p>Source code for ui.R and server.R files are available on the GitHub:</p>
+
+<p><a href="https://github.com/thongtom/DevelopDataProduct">https://github.com/thongtom/DevelopDataProduct</a></p>
+
+<p>You can find out the details of this Shiny application by reading the &quot;Info&quot; section in navigation tab of this <a href="https://thongtom.shinyapps.io/DevelopDataProduct-AQI">application.</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>The AQI Dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">data &lt;-read.csv(&quot;aqi.csv&quot;,skip=1)
+head(data)
+</code></pre>
+
+<pre><code>##         Date Hour AQI
+## 1 2013-08-01    1  66
+## 2 2013-08-01    2  67
+## 3 2013-08-01    3  67
+## 4 2013-08-01    4  67
+## 5 2013-08-01    5  67
+## 6 2013-08-01    6  67
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Sample Plot Chart (Year 2014)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(ggplot2);library(lubridate);
+dataSel &lt;- data[(year(data$Date)==2014 &amp; (month(data$Date)&gt;=1 &amp; month(data$Date)&lt;=12)), ]
+p &lt;- ggplot(data=dataSel, aes(x=dataSel$Hour, y=dataSel$AQI, height=100, width=100)) 
+p +geom_point(color=&quot;green&quot;)+labs(x=&quot;Hour&quot;, y=&quot;AQI&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The Shiny Application'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='The AQI Dataset'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Sample Plot Chart (Year 2014)'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
